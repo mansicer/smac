@@ -189,7 +189,8 @@ class smac_parallel_env(ParallelEnv):
         self.frames += 1
 
         all_infos = {agent: {} for agent in self.agents}
-        # all_infos.update(smac_info)
+        for agent_info in all_infos.values():
+            agent_info.update(smac_info)
         all_terms, all_truncs = self._all_terms_truncs(
             terminated=terminated, truncated=(self.frames >= self.max_cycles)
         )
